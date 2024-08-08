@@ -1,7 +1,10 @@
 const cont_doc = document.getElementById("cont");
+const diff_doc = document.getElementById("diff");
+const sub_btn_doc = document.getElementById("sub_btn");
 
 let inp_arr = [];
 let get_sudo_arr = [];
+let get_sol_sudo_arr = [];
 const URL =
   "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty},results,message}}";
 
@@ -37,11 +40,20 @@ async function getSudo() {
   const response = await fetch(URL);
   let data = await response.json();
 
-  //console.log(data.newboard.grids[0].value)
   get_sudo_arr = [...data.newboard.grids[0].value];
+  get_sol_sudo_arr = [...data.newboard.grids[0].solution];
+
+  console.log(get_sol_sudo_arr);
+
+  diff_doc.innerHTML = `Difficulty: ${data.newboard.grids[0].difficulty}`;
+
+  sub_btn_doc.addEventListener("click", function () {
+    checkValues();
+  });
 
   putValuesSudo();
-  //    console.log(get_sudo_arr[1])
+
+  
 }
 
 function putValuesSudo() {
@@ -62,25 +74,92 @@ function putValuesSudo() {
   for (let w = 36; w < 45; w++) {
     inp_arr[w].value = get_sudo_arr[4][w - 36];
   }
-  for (let w =45; w < 54; w++) {
+  for (let w = 45; w < 54; w++) {
     inp_arr[w].value = get_sudo_arr[5][w - 45];
   }
-  for (let w =54; w < 63; w++) {
+  for (let w = 54; w < 63; w++) {
     inp_arr[w].value = get_sudo_arr[6][w - 54];
   }
-  for (let w =63; w < 72; w++) {
+  for (let w = 63; w < 72; w++) {
     inp_arr[w].value = get_sudo_arr[7][w - 63];
   }
-  for (let w =72; w < 81; w++) {
+  for (let w = 72; w < 81; w++) {
     inp_arr[w].value = get_sudo_arr[8][w - 72];
   }
 
-
-for (let i = 0; i < 81; i++) {    
-  if(inp_arr[i].value=="0"){
-    inp_arr[i].value="";
+  for (let i = 0; i < 81; i++) {
+    if (inp_arr[i].value == "0") {
+      inp_arr[i].value = "";
+    }
   }
 }
+
+function checkValues() {
+  for (let w = 0; w < 9; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[0][w]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+
+  for (let w = 9; w < 18; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[1][w - 9]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+
+  for (let w = 18; w < 27; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[2][w - 18]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+  for (let w = 27; w < 36; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[3][w - 27]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+  for (let w = 36; w < 45; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[4][w - 36]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+  for (let w = 45; w < 54; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[5][w - 45]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+  for (let w = 54; w < 63; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[6][w - 54]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+  for (let w = 63; w < 72; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[7][w - 63]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
+  for (let w = 72; w < 81; w++) {
+    if (inp_arr[w].value != get_sol_sudo_arr[8][w - 72]) {
+      inp_arr[w].style.color = "red";
+    } else {
+      inp_arr[w].style.color = "green";
+    }
+  }
 }
 
 getSudo();
