@@ -7,16 +7,19 @@
     grid-template-rows: repeat(9,auto);
     grid-template-columns: repeat(9,auto);
     gap: 0;
-    min-width:370px;
+    min-width:340px;
+    
    
     
 }
 
 input{
     width:100%;
+   
     padding: 0.5rem;
     margin: 0;
-    border:0.5px solid black;
+    border:0.1px solid black;
+    text-align: center;
    
 }
 
@@ -25,7 +28,7 @@ input{
     grid-template-rows: repeat(9,auto);
     grid-template-columns: repeat(9,auto);
     gap: 0;
-    min-width:370px;
+    min-width:340px;
     
 
 }

@@ -4,6 +4,8 @@ const sub_btn_doc = document.getElementById("sub_btn");
 const new_btn_doc = document.getElementById("new_btn");
 const sol_btn_doc = document.getElementById("sol_btn");
 const sol_cont_doc = document.getElementById("sol_cont");
+const save_btn_doc = document.getElementById("save_btn");
+const load_btn_doc = document.getElementById("load_btn");
 //const err_doc = document.getElementById("err")
 
 let inp_arr = [];
@@ -11,6 +13,8 @@ let sol_arr = [];
 let get_sudo_arr = [];
 let get_sol_sudo_arr = [];
 let sol_state= "hide";
+let inp_arr_stor = []
+let sol_arr_stor = []
 const URL =
   "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty},results,message}}";
 
@@ -22,6 +26,7 @@ new_btn_doc.addEventListener("click", function () {
 // solution
 
 for (let i = 0; i < 81; i++) {
+  
     sol_arr[i] = document.createElement("input");
     sol_arr[i].type = "text";
 
@@ -39,6 +44,7 @@ else if(sol_state=="show"){
 for (let i = 0; i < 81; i++) {
   inp_arr[i] = document.createElement("input");
   inp_arr[i].type = "text";
+
 
   inp_arr[i].addEventListener("input", function () {
     if (
@@ -72,9 +78,11 @@ async function getSudo() {
   get_sudo_arr = [...data.newboard.grids[0].value];
   get_sol_sudo_arr = [...data.newboard.grids[0].solution];
 
-  console.log(get_sol_sudo_arr);
+//  console.log(get_sol_sudo_arr);
 
   diff_doc.innerHTML = `Difficulty: ${data.newboard.grids[0].difficulty}`;
+
+
 
   sub_btn_doc.addEventListener("click", function () {
     checkValues();
@@ -83,6 +91,15 @@ async function getSudo() {
   sol_btn_doc.addEventListener("click",function(){
     
     showSolution();
+    putValuesSol();
+  })
+
+  save_btn_doc.addEventListener("click",function(){
+saveInpVal()
+  })
+
+  load_btn_doc.addEventListener("click",function(){
+    loadInpVal()
   })
 
   putValuesSudo();
@@ -210,5 +227,50 @@ else if(sol_state=="show"){
 }
 }
 
+function putValuesSol(){
+  for (let w = 0; w < 9; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[0][w];
+  }
+
+  for (let w = 9; w < 18; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[1][w - 9];
+  }
+
+  for (let w = 18; w < 27; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[2][w - 18];
+  }
+  for (let w = 27; w < 36; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[3][w - 27];
+  }
+  for (let w = 36; w < 45; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[4][w - 36];
+  }
+  for (let w = 45; w < 54; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[5][w - 45];
+  }
+  for (let w = 54; w < 63; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[6][w - 54];
+  }
+  for (let w = 63; w < 72; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[7][w - 63];
+  }
+  for (let w = 72; w < 81; w++) {
+    sol_arr[w].value = get_sol_sudo_arr[8][w - 72];
+  }
+}
+
+function loadInpVal(){
+  for (let i = 0; i < 81; i++) {
+    inp_arr[i].value = JSON.parse(localStorage.getItem("inparr"))[i]
+
+}
+}
+function saveInpVal(){
+for (let i = 0; i < 81; i++) {
+  inp_arr_stor[i]=inp_arr[i].value;
+  
+}
+localStorage.setItem("inparr",JSON.stringify(inp_arr_stor));
+}
 
 getSudo();
