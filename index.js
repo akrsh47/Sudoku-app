@@ -28,6 +28,7 @@ new_btn_doc.addEventListener("click", function () {
 for (let i = 0; i < 81; i++) {
   
     sol_arr[i] = document.createElement("input");
+    sol_arr[i].readOnly = true;
     sol_arr[i].type = "text";
 
     
@@ -96,10 +97,12 @@ async function getSudo() {
 
   save_btn_doc.addEventListener("click",function(){
 saveInpVal()
+saveSolVal()
   })
 
   load_btn_doc.addEventListener("click",function(){
-    loadInpVal()
+    loadInpVal();
+    loadSolVal();
   })
 
   putValuesSudo();
@@ -265,6 +268,12 @@ function loadInpVal(){
 
 }
 }
+function loadSolVal(){
+  for (let i = 0; i < 81; i++) {
+    sol_arr[i].value=JSON.parse(localStorage.getItem("solarr"))[i]
+  }
+
+}
 function saveInpVal(){
 for (let i = 0; i < 81; i++) {
   inp_arr_stor[i]=inp_arr[i].value;
@@ -272,5 +281,11 @@ for (let i = 0; i < 81; i++) {
 }
 localStorage.setItem("inparr",JSON.stringify(inp_arr_stor));
 }
+function saveSolVal(){
+for (let i = 0; i < 81; i++) {
+  sol_arr_stor[i]=sol_arr[i].value;
+}
+localStorage.setItem("solarr",JSON.stringify(sol_arr_stor));
 
+}
 getSudo();
