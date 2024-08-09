@@ -1,12 +1,40 @@
 const cont_doc = document.getElementById("cont");
 const diff_doc = document.getElementById("diff");
 const sub_btn_doc = document.getElementById("sub_btn");
+const new_btn_doc = document.getElementById("new_btn");
+const sol_btn_doc = document.getElementById("sol_btn");
+const sol_cont_doc = document.getElementById("sol_cont");
+//const err_doc = document.getElementById("err")
 
 let inp_arr = [];
+let sol_arr = [];
 let get_sudo_arr = [];
 let get_sol_sudo_arr = [];
+let sol_state= "hide";
 const URL =
   "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty},results,message}}";
+
+new_btn_doc.addEventListener("click", function () {
+  location.reload();
+});
+
+
+// solution
+
+for (let i = 0; i < 81; i++) {
+    sol_arr[i] = document.createElement("input");
+    sol_arr[i].type = "text";
+
+    
+    sol_cont_doc.append(sol_arr[i])
+}
+
+if(sol_state=="hide"){
+  sol_cont_doc.style.display="none";
+}
+else if(sol_state=="show"){
+  sol_cont_doc.style.display="grid";
+}
 
 for (let i = 0; i < 81; i++) {
   inp_arr[i] = document.createElement("input");
@@ -38,6 +66,7 @@ for (let i = 0; i < 81; i++) {
 
 async function getSudo() {
   const response = await fetch(URL);
+
   let data = await response.json();
 
   get_sudo_arr = [...data.newboard.grids[0].value];
@@ -51,9 +80,12 @@ async function getSudo() {
     checkValues();
   });
 
-  putValuesSudo();
+  sol_btn_doc.addEventListener("click",function(){
+    
+    showSolution();
+  })
 
-  
+  putValuesSudo();
 }
 
 function putValuesSudo() {
@@ -161,5 +193,22 @@ function checkValues() {
     }
   }
 }
+
+
+function showSolution() {
+if(sol_state=="hide"){
+  sol_state="show";
+  sol_btn_doc.innerHTML=`hide solution`;
+  sol_cont_doc.style.display="grid"
+}
+else if(sol_state=="show"){
+  sol_state="hide";
+  sol_btn_doc.innerHTML=`view solution`;
+  sol_cont_doc.style.display="none"
+
+
+}
+}
+
 
 getSudo();
