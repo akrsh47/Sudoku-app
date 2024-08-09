@@ -9,12 +9,14 @@ const load_btn_doc = document.getElementById("load_btn");
 //const err_doc = document.getElementById("err")
 
 let inp_arr = [];
+let inp_arr_cpy = [];
+let inp_arr_cpy_stor=[];
 let sol_arr = [];
 let get_sudo_arr = [];
 let get_sol_sudo_arr = [];
 let sol_state= "hide";
-let inp_arr_stor = []
-let sol_arr_stor = []
+let inp_arr_stor = [];
+let sol_arr_stor = [];
 const URL =
   "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty},results,message}}";
 
@@ -79,6 +81,7 @@ async function getSudo() {
   get_sudo_arr = [...data.newboard.grids[0].value];
   get_sol_sudo_arr = [...data.newboard.grids[0].solution];
 
+
 //  console.log(get_sol_sudo_arr);
 
   diff_doc.innerHTML = `Difficulty: ${data.newboard.grids[0].difficulty}`;
@@ -87,6 +90,7 @@ async function getSudo() {
 
   sub_btn_doc.addEventListener("click", function () {
     checkValues();
+    chckInitialVal();
   });
 
   sol_btn_doc.addEventListener("click",function(){
@@ -96,15 +100,18 @@ async function getSudo() {
   })
 
   save_btn_doc.addEventListener("click",function(){
-saveInpVal()
-saveSolVal()
+saveInpVal();
+saveCpyVal();
+saveSolVal();
   })
 
   load_btn_doc.addEventListener("click",function(){
     loadInpVal();
+    loadCpyVal();
     loadSolVal();
   })
 
+  cpyInpVal()
   putValuesSudo();
 }
 
@@ -144,6 +151,58 @@ function putValuesSudo() {
       inp_arr[i].value = "";
     }
   }
+
+  
+  
+
+}
+
+function cpyInpVal(){
+  for (let w = 0; w < 9; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[0][w];
+  }
+
+  for (let w = 9; w < 18; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[1][w - 9];
+  }
+
+  for (let w = 18; w < 27; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[2][w - 18];
+  }
+  for (let w = 27; w < 36; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[3][w - 27];
+  }
+  for (let w = 36; w < 45; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[4][w - 36];
+  }
+  for (let w = 45; w < 54; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[5][w - 45];
+  }
+  for (let w = 54; w < 63; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[6][w - 54];
+  }
+  for (let w = 63; w < 72; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[7][w - 63];
+  }
+  for (let w = 72; w < 81; w++) {
+    inp_arr_cpy[w] = get_sudo_arr[8][w - 72];
+  }
+
+  for (let i = 0; i < 81; i++) {
+    if (inp_arr_cpy[i] == "0") {
+      inp_arr_cpy[i] = "";
+    }
+  }
+
+}
+
+function chckInitialVal(){
+for (let i = 0; i < 81; i++) {
+  if(inp_arr_cpy[i]==inp_arr[i].value){
+    inp_arr[i].style.color="black";
+  }
+}
+  
 }
 
 function checkValues() {
@@ -264,7 +323,12 @@ function putValuesSol(){
 
 function loadInpVal(){
   for (let i = 0; i < 81; i++) {
+    try{
     inp_arr[i].value = JSON.parse(localStorage.getItem("inparr"))[i]
+    }
+    catch{
+      console.log("not able to load")
+    }
 
 }
 }
@@ -274,6 +338,11 @@ function loadSolVal(){
   }
 
 }
+ function loadCpyVal(){
+  for (let i = 0; i < 81; i++) {
+    inp_arr_cpy[i] = JSON.parse(localStorage.getItem("inparrcpy"))[i];
+  }
+} 
 function saveInpVal(){
 for (let i = 0; i < 81; i++) {
   inp_arr_stor[i]=inp_arr[i].value;
@@ -287,5 +356,11 @@ for (let i = 0; i < 81; i++) {
 }
 localStorage.setItem("solarr",JSON.stringify(sol_arr_stor));
 
+}
+function saveCpyVal(){
+  for (let i = 0; i < 81; i++) {
+    inp_arr_cpy_stor[i]=inp_arr_cpy[i];
+  }
+  localStorage.setItem("inparrcpy",JSON.stringify(inp_arr_cpy_stor));
 }
 getSudo();
