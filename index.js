@@ -6,6 +6,8 @@ const sol_btn_doc = document.getElementById("sol_btn");
 const sol_cont_doc = document.getElementById("sol_cont");
 const save_btn_doc = document.getElementById("save_btn");
 const load_btn_doc = document.getElementById("load_btn");
+const score_sec_doc  = document.getElementById("score_sec")
+const score_doc = document.getElementById("score");
 //const err_doc = document.getElementById("err")
 
 let inp_arr = [];
@@ -20,10 +22,19 @@ let sol_arr_stor = [];
 const URL =
   "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty},results,message}}";
 
+let SCORE = 0;
+score_sec_doc.style.display="none";
+
+let GAMEOVER ="false";
+
+
 new_btn_doc.addEventListener("click", function () {
   location.reload();
-  localStorage.clear();
+  //localStorage.clear();
 });
+
+
+
 
 // solution
 
@@ -44,6 +55,7 @@ if (sol_state == "hide") {
 for (let i = 0; i < 81; i++) {
   inp_arr[i] = document.createElement("input");
   inp_arr[i].type = "text";
+
 
   inp_arr[i].addEventListener("input", function () {
     if (
@@ -82,8 +94,19 @@ async function getSudo() {
   diff_doc.innerHTML = `Difficulty: ${data.newboard.grids[0].difficulty}`;
 
   sub_btn_doc.addEventListener("click", function () {
+    GAMEOVER="true"
     checkValues();
     chckInitialVal();
+    checkScore()
+
+
+    score_sec_doc.style.display="block";
+
+    if(GAMEOVER=="true"){
+    for(let i=0;i<81;i++){
+      inp_arr[i].readOnly=true
+    }
+}
   });
 
   sol_btn_doc.addEventListener("click", function () {
@@ -105,6 +128,11 @@ async function getSudo() {
   cpyInpVal();
   putValuesSol();
   putValuesSudo();
+
+
+
+ 
+
 }
 
 function putValuesSudo() {
@@ -143,6 +171,8 @@ function putValuesSudo() {
       inp_arr[i].value = "";
     }
   }
+
+  
 }
 
 function cpyInpVal() {
@@ -373,6 +403,23 @@ function saveCpyVal() {
     inp_arr_cpy_stor[i] = inp_arr_cpy[i];
   }
   localStorage.setItem("inparrcpy", JSON.stringify(inp_arr_cpy_stor));
+}
+function checkScore(){
+  for(let i=0;i<81;i++){
+    if(inp_arr[i].style.color=="green"){
+      SCORE+=100;
+    }
+    if(inp_arr[i].style.color=="red"){
+      SCORE-=100;
+    }
+  }
+
+  if(SCORE<0){
+    SCORE=0
+  }
+
+
+  score_doc.innerHTML+=`${SCORE}`;
 }
 
 getSudo();
