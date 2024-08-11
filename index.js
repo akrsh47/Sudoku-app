@@ -12,6 +12,8 @@ const score_doc = document.getElementById("score");
 const f_new_btn_doc = document.getElementById("f_new_btn");
 const main_doc = document.getElementById("main");
 const home_scr_doc = document.getElementById("home_scr");
+
+
 //const err_doc = document.getElementById("err")
 
 main_doc.style.display = "none";
