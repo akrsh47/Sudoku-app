@@ -7,46 +7,53 @@
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" type="image/x-icon" href="assets/icon.png" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
   </head>
   <body>
-   
-
     <div id="home_scr">
       <div class="h1">Sudoky</div>
       <div class="h2">Your daily mind Workout</div>
-      <img src="assets/Mental health.gif" width="300" height="300">
-      
+      <img src="assets/Mental health.gif" width="300" height="300" />
+
       <div>
-      <button id="f_new_btn">New Game</button>
-      <button id="load_btn">Load Game</button>
-      <button>Credits</button>
+        <button id="f_new_btn">New Game</button>
+        <button id="load_btn">Load Game</button>
+        <button>Credits</button>
       </div>
 
-      <div class="h3">A Game by <a href="https://github.com/akrsh47">Akarsh</a></div>
+      <div class="h3">
+        A Game by <a href="https://github.com/akrsh47">Akarsh</a>
+      </div>
     </div>
 
     <main id="main">
-      <div id="time"></div>
+      <div id="time">00:00:00</div>
       <section id="cont"></section>
       <div id="diff"></div>
 
-      <div>
+      <div class="but_sec">
         <button id="sub_btn">Submit</button>
         <button id="save_btn">Save</button>
       </div>
 
       <div>
-        <button id="new_btn">Home</button>
+        <button id="new_btn"><i class="fa-solid fa-house"></i></button>
       </div>
 
       <section id="score_sec">
         <div>GameOver</div>
         <div id="score">Score:</div>
-        <div id="ttaken">Time Taken - </div>
+        <div id="ttaken">Time Taken:</div>
         <button id="sol_btn">View Solution</button>
       </section>
 

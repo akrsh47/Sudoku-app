@@ -84,6 +84,6 @@ time_interval= window.setInterval(startClock,1000);
 })
 
 sub_btn_doc.addEventListener("click",function(){
-    ttaken_doc.innerHTML+=`${beforeZeroHour} : ${beforeZeroMin} : ${beforeZeroSec}`;
+    ttaken_doc.innerHTML+=` ${beforeZeroHour} : ${beforeZeroMin} : ${beforeZeroSec}`;
     window.clearInterval(time_interval)
 })

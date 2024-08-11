@@ -13,15 +13,26 @@ const f_new_btn_doc = document.getElementById("f_new_btn");
 const main_doc = document.getElementById("main");
 const home_scr_doc = document.getElementById("home_scr");
 
-
 //const err_doc = document.getElementById("err")
 
 main_doc.style.display = "none";
 
 f_new_btn_doc.addEventListener("click", function () {
   home_scr_doc.style.display = "none";
-  main_doc.style.display = "block";
+  main_doc.style.display = "flex";
+  document.body.style.backgroundImage = `none`;
+  //document.body.style.backgroundImage = `url(assets/bg2.jpg)`;
+
 });
+
+load_btn_doc.addEventListener("click", function () {
+  document.body.style.backgroundImage = `none`;
+});
+
+// set background image for home screen
+if (main_doc.style.display == "none") {
+  document.body.style.backgroundImage = `url(assets/bg.jpg)`;
+}
 
 let inp_arr = [];
 let inp_arr_cpy = [];
@@ -129,7 +140,7 @@ async function getSudo() {
   });
 
   load_btn_doc.addEventListener("click", function () {
-    main_doc.style.display = "block";
+    main_doc.style.display = "flex";
     home_scr_doc.style.display = "none";
     loadInpVal();
     loadCpyVal();
@@ -139,6 +150,7 @@ async function getSudo() {
   cpyInpVal();
   putValuesSol();
   putValuesSudo();
+  borderColorInp();
 }
 
 function putValuesSudo() {
@@ -220,7 +232,7 @@ function cpyInpVal() {
 function chckInitialVal() {
   for (let i = 0; i < 81; i++) {
     if (inp_arr_cpy[i] == inp_arr[i].value) {
-      inp_arr[i].style.color = "black";
+      inp_arr[i].style.color = "white";
     }
   }
 }
@@ -228,68 +240,68 @@ function chckInitialVal() {
 function checkValues() {
   for (let w = 0; w < 9; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
 
   for (let w = 9; w < 18; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
 
   for (let w = 18; w < 27; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
   for (let w = 27; w < 36; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
   for (let w = 36; w < 45; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
   for (let w = 45; w < 54; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
 
   for (let w = 54; w < 63; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
   for (let w = 63; w < 72; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
   for (let w = 72; w < 81; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
-      inp_arr[w].style.color = "red";
+      inp_arr[w].style.color = " rgb(255, 135, 135)";
     } else {
-      inp_arr[w].style.color = "green";
+      inp_arr[w].style.color = " rgb(63, 240, 63)";
     }
   }
 }
@@ -409,10 +421,10 @@ function saveCpyVal() {
 }
 function checkScore() {
   for (let i = 0; i < 81; i++) {
-    if (inp_arr[i].style.color == "green") {
+    if (inp_arr[i].style.color == " rgb(63, 240, 63)") {
       SCORE += 100;
     }
-    if (inp_arr[i].style.color == "red") {
+    if (inp_arr[i].style.color == " rgb(255, 135, 135)") {
       SCORE -= 100;
     }
   }
@@ -422,6 +434,65 @@ function checkScore() {
   }
 
   score_doc.innerHTML += `${SCORE}`;
+}
+
+function borderColorInp() {
+  for (let i = 0; i < 9; i++) {
+    inp_arr[i].style.borderTop = " 3px solid black";
+  }
+  for (let i = 72; i < 81; i++) {
+    inp_arr[i].style.borderBottom = " 3px solid black";
+  }
+  for (let i = 0; i < 81; i++) {
+    if (i % 9 == 0) {
+      inp_arr[i].style.borderLeft = " 3px solid black";
+    }
+  }
+  for (let i = 8; i < 81; i += 9) {
+    inp_arr[i].style.borderRight = " 3px solid black";
+  }
+  for (let i = 2; i < 75; i += 9) {
+    inp_arr[i].style.borderRight = " 3px solid black";
+  }
+
+  for (let i = 3; i < 76; i += 9) {
+    inp_arr[i].style.borderLeft = " 3px solid black";
+  }
+  for (let i = 5; i < 79; i += 9) {
+    inp_arr[i].style.borderRight = " 3px solid black";
+  }
+  for (let i = 6; i < 80; i += 9) {
+    inp_arr[i].style.borderLeft = " 3px solid black";
+  }
+
+  for (let i = 18; i < 27; i++) {
+    inp_arr[i].style.borderBottom = " 3px solid black";
+    inp_arr[i].style.marginBottom = "1rem";
+  }
+  for (let i = 18; i < 27; i++) {
+    inp_arr[i].style.borderBottom = " 3px solid black";
+    inp_arr[i].style.marginBottom = "1rem";
+  }
+
+  for (let i = 45; i < 54; i++) {
+    inp_arr[i].style.borderBottom = " 3px solid black";
+    inp_arr[i].style.marginBottom = "1rem";
+  }
+
+  for(let i=3;i<76;i+=9){
+    inp_arr[i].style.marginLeft= "0.5rem"
+    
+  }
+
+  for(let i=6;i<81;i+=9){
+    inp_arr[i].style.marginLeft= "0.5rem"
+    
+
+
+  }
+
+  
+  
 }
 
 getSudo();

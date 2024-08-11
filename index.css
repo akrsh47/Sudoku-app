@@ -16,15 +16,38 @@ body {
   font-family: "Exo", sans-serif;
   font-optical-sizing: auto;
 
-  background-image: url("assets/bg.jpg");
+  /* background-image: url("assets/bg.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #home_scr img {
   width: 100%;
   height: auto;
   mix-blend-mode: multiply;
+}
+#time {
+  text-align: center;
+
+  padding: 0.5rem;
+  font-size: 1.5rem;
+
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+  border-radius: 2rem 2rem 0 0;
+  background-color: var(--FONTCOLOR);
+  color: white;
+  border: 2px solid black;
+  opacity: 0.9;
+  max-width: 342px;
 }
 
 #cont {
@@ -33,19 +56,91 @@ body {
   grid-template-columns: repeat(9, auto);
   gap: 0;
   min-width: 340px;
+  min-height: 350px;
+  /* background-image: radial-gradient(white,#B0DAFF,#add4f7); */
+  padding: 0.5rem;
+  /* background-color: rgba(255, 255, 255, 0.603); */
+ /*  box-shadow: 2px 2px 10px white; */
 }
 
 input {
-  width: 80%;
-    
-  padding: 0.5rem;
-  margin: 0.1rem;
   
+  font-size: 1.5rem;
+    width: 32px;
+  margin: 0.1rem;
+
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
+  border: 1px solid black;
+
+  background-color: var(--FONTCOLOR);
+  color: white;
+
+  opacity: 0.9;
+  font-weight: 900;
+}
+
+input:focus {
+  background-color: #063055;
+}
+
+#diff {
+  font-size: 0.9rem;
+  background-color: var(--FONTCOLOR);
+
+  color: white;
+  width: 90%;
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 0 0 2rem 2rem;
+  letter-spacing: 0.2rem;
+  opacity: 0.9;
+  max-width: 342px;
 
 }
 
+.but_sec {
+  display: flex;
+  margin-top: 1rem;
+}
+.but_sec button {
+  font-size: 1.1rem;
+  border: 0;
+  margin: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  color: white;
+  letter-spacing: 0.2rem;
+}
+#sub_btn {
+  background-color: #b9b91b;
+  border-radius: 1rem;
+}
+#sub_btn:hover {
+  opacity: 0.8;
+}
+#save_btn:hover {
+  opacity: 0.8;
+}
+#save_btn {
+  background-color: rgb(0, 167, 0);
+  border-radius: 1rem;
+}
+
+#new_btn {
+  font-size: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 50%;
+  border: 0;
+  color: white;
+  background-color: #0d5ea5;
+  margin-top: 1rem;
+}
+#new_btn:hover {
+  cursor: pointer;
+  background-color: #0d5ea5ad;
+}
 #sol_cont {
   display: grid;
   grid-template-rows: repeat(9, auto);
@@ -60,7 +155,7 @@ input {
   opacity: 0.9;
   color: var(--FONTCOLOR);
   padding-right: 0.3rem;
-    font-weight: 500;
+  font-weight: 500;
   text-shadow: 2px 2px 2px white;
 }
 
@@ -74,22 +169,20 @@ input {
   font-weight: 500;
 }
 
-.h3{
-    text-align: right;
-    word-spacing: 1rem;
-    padding: 1rem;
-    color: #0d5ea5;
-    font-size: 1rem;
-    text-shadow: 2px 2px 5px white;
-   
-    
+.h3 {
+  text-align: right;
+  word-spacing: 1rem;
+  padding: 1rem;
+  color: #0d5ea5;
 
+  font-size: 1rem;
+  text-shadow: 2px 2px 5px white;
+  opacity: 0.5;
 }
-.h3 a{
-    color: #0d5ea5;
-    font-weight: 700;
+.h3 a {
+  color: #0d5ea5;
 
-
+  font-weight: 700;
 }
 
 #home_scr :nth-child(4) {
@@ -114,40 +207,35 @@ input {
   cursor: pointer;
 
   animation-name: updown;
-  -webkit-animation-name:updown ;
+  -webkit-animation-name: updown;
   animation-iteration-count: infinite;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
-  
 }
 
-
-#home_scr button:hover{
-    background-color: rgba(255, 255, 255, 0.39);
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in-out;
-    text-shadow: 4px 4px 10px white;
+#home_scr button:hover {
+  background-color: rgba(255, 255, 255, 0.39);
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  text-shadow: 4px 4px 10px white;
 }
 
-#home_scr button:focus{
+#home_scr button:focus {
   box-shadow: -2px -2px 1px var(--FONTCOLOR);
-    transition-duration: 0.3s;
-
+  transition-duration: 0.3s;
 }
 
 @keyframes updown {
-    0%{
-        transform: translateY(0px);
-    }
-    50%{
-        transform: translateY(-5px);
-
-    }
-    100%{
-        transform: translateY(0px);
-
-    }
-    /* 50%{
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+  /* 50%{
         transform: translateY(-5px);
 
     }
