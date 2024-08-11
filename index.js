@@ -6,9 +6,20 @@ const sol_btn_doc = document.getElementById("sol_btn");
 const sol_cont_doc = document.getElementById("sol_cont");
 const save_btn_doc = document.getElementById("save_btn");
 const load_btn_doc = document.getElementById("load_btn");
-const score_sec_doc  = document.getElementById("score_sec")
+const score_sec_doc = document.getElementById("score_sec");
 const score_doc = document.getElementById("score");
+
+const f_new_btn_doc = document.getElementById("f_new_btn");
+const main_doc = document.getElementById("main");
+const home_scr_doc = document.getElementById("home_scr");
 //const err_doc = document.getElementById("err")
+
+main_doc.style.display = "none";
+
+f_new_btn_doc.addEventListener("click", function () {
+  home_scr_doc.style.display = "none";
+  main_doc.style.display = "block";
+});
 
 let inp_arr = [];
 let inp_arr_cpy = [];
@@ -23,18 +34,14 @@ const URL =
   "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty},results,message}}";
 
 let SCORE = 0;
-score_sec_doc.style.display="none";
+score_sec_doc.style.display = "none";
 
-let GAMEOVER ="false";
-
+let GAMEOVER = "false";
 
 new_btn_doc.addEventListener("click", function () {
   location.reload();
   //localStorage.clear();
 });
-
-
-
 
 // solution
 
@@ -55,7 +62,6 @@ if (sol_state == "hide") {
 for (let i = 0; i < 81; i++) {
   inp_arr[i] = document.createElement("input");
   inp_arr[i].type = "text";
-
 
   inp_arr[i].addEventListener("input", function () {
     if (
@@ -94,19 +100,20 @@ async function getSudo() {
   diff_doc.innerHTML = `Difficulty: ${data.newboard.grids[0].difficulty}`;
 
   sub_btn_doc.addEventListener("click", function () {
-    GAMEOVER="true"
-    checkValues();
-    chckInitialVal();
-    checkScore()
-
-
-    score_sec_doc.style.display="block";
-
-    if(GAMEOVER=="true"){
-    for(let i=0;i<81;i++){
-      inp_arr[i].readOnly=true
+    if (GAMEOVER == "false") {
+      GAMEOVER = "true";
+      checkValues();
+      chckInitialVal();
+      checkScore();
     }
-}
+
+    score_sec_doc.style.display = "block";
+
+    if (GAMEOVER == "true") {
+      for (let i = 0; i < 81; i++) {
+        inp_arr[i].readOnly = true;
+      }
+    }
   });
 
   sol_btn_doc.addEventListener("click", function () {
@@ -120,6 +127,8 @@ async function getSudo() {
   });
 
   load_btn_doc.addEventListener("click", function () {
+    main_doc.style.display = "block";
+    home_scr_doc.style.display = "none";
     loadInpVal();
     loadCpyVal();
     loadSolVal();
@@ -128,11 +137,6 @@ async function getSudo() {
   cpyInpVal();
   putValuesSol();
   putValuesSudo();
-
-
-
- 
-
 }
 
 function putValuesSudo() {
@@ -171,8 +175,6 @@ function putValuesSudo() {
       inp_arr[i].value = "";
     }
   }
-
-  
 }
 
 function cpyInpVal() {
@@ -266,8 +268,7 @@ function checkValues() {
       inp_arr[w].style.color = "green";
     }
   }
-   
-  
+
   for (let w = 54; w < 63; w++) {
     if (inp_arr[w].value != sol_arr[w].value) {
       inp_arr[w].style.color = "red";
@@ -404,22 +405,21 @@ function saveCpyVal() {
   }
   localStorage.setItem("inparrcpy", JSON.stringify(inp_arr_cpy_stor));
 }
-function checkScore(){
-  for(let i=0;i<81;i++){
-    if(inp_arr[i].style.color=="green"){
-      SCORE+=100;
+function checkScore() {
+  for (let i = 0; i < 81; i++) {
+    if (inp_arr[i].style.color == "green") {
+      SCORE += 100;
     }
-    if(inp_arr[i].style.color=="red"){
-      SCORE-=100;
+    if (inp_arr[i].style.color == "red") {
+      SCORE -= 100;
     }
   }
 
-  if(SCORE<0){
-    SCORE=0
+  if (SCORE < 0) {
+    SCORE = 0;
   }
 
-
-  score_doc.innerHTML+=`${SCORE}`;
+  score_doc.innerHTML += `${SCORE}`;
 }
 
 getSudo();
