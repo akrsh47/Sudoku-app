@@ -100,6 +100,9 @@ for (let i = 0; i < 81; i++) {
   cont_doc.append(inp_arr[i]);
 }
 
+document.getElementById("diff2").style.display="none";
+
+
 async function getSudo() {
   const response = await fetch(URL);
 
@@ -117,20 +120,32 @@ async function getSudo() {
       GAMEOVER = "true";
       checkValues();
       chckInitialVal();
-      checkScore();
+      checkScore();  
     }
 
-    score_sec_doc.style.display = "block";
+
+    score_sec_doc.style.display = "flex";
 
     if (GAMEOVER == "true") {
       for (let i = 0; i < 81; i++) {
         inp_arr[i].readOnly = true;
       }
     }
+
+    score_sec_doc.scrollIntoView({
+      behavior:"smooth"
+    });
+
   });
 
   sol_btn_doc.addEventListener("click", function () {
+      document.getElementById("sol_head").innerHTML=`Solution`;
+      document.getElementById("diff2").innerHTML=`Difficulty: ${data.newboard.grids[0].difficulty}`;
+     
     showSolution();
+     sol_cont_doc.scrollIntoView({
+      behavior:"smooth"
+    });
   });
 
   save_btn_doc.addEventListener("click", function () {
@@ -151,6 +166,7 @@ async function getSudo() {
   putValuesSol();
   putValuesSudo();
   borderColorInp();
+  borderColorSol();
 }
 
 function putValuesSudo() {
@@ -311,10 +327,16 @@ function showSolution() {
     sol_state = "show";
     sol_btn_doc.innerHTML = `hide solution`;
     sol_cont_doc.style.display = "grid";
+      document.getElementById("sol_head").style.display=`block`;
+      document.getElementById("diff2").style.display=`block`;
+
   } else if (sol_state == "show") {
     sol_state = "hide";
     sol_btn_doc.innerHTML = `view solution`;
     sol_cont_doc.style.display = "none";
+      document.getElementById("sol_head").style.display=`none`;
+      document.getElementById("diff2").style.display=`none`;
+
   }
 }
 
@@ -421,10 +443,11 @@ function saveCpyVal() {
 }
 function checkScore() {
   for (let i = 0; i < 81; i++) {
-    if (inp_arr[i].style.color == " rgb(63, 240, 63)") {
+    if (inp_arr[i].style.color == "rgb(63, 240, 63)") {
       SCORE += 100;
+      
     }
-    if (inp_arr[i].style.color == " rgb(255, 135, 135)") {
+    if (inp_arr[i].style.color == "rgb(255, 135, 135)") {
       SCORE -= 100;
     }
   }
@@ -493,6 +516,62 @@ function borderColorInp() {
 
   
   
+}
+
+function borderColorSol(){
+  for (let i = 0; i < 9; i++) {
+    sol_arr[i].style.borderTop = " 3px solid black";
+  }
+  for (let i = 72; i < 81; i++) {
+    sol_arr[i].style.borderBottom = " 3px solid black";
+  }
+  for (let i = 0; i < 81; i++) {
+    if (i % 9 == 0) {
+      sol_arr[i].style.borderLeft = " 3px solid black";
+    }
+  }
+  for (let i = 8; i < 81; i += 9) {
+    sol_arr[i].style.borderRight = " 3px solid black";
+  }
+  for (let i = 2; i < 75; i += 9) {
+    sol_arr[i].style.borderRight = " 3px solid black";
+  }
+
+  for (let i = 3; i < 76; i += 9) {
+    sol_arr[i].style.borderLeft = " 3px solid black";
+  }
+  for (let i = 5; i < 79; i += 9) {
+    sol_arr[i].style.borderRight = " 3px solid black";
+  }
+  for (let i = 6; i < 80; i += 9) {
+    sol_arr[i].style.borderLeft = " 3px solid black";
+  }
+
+  for (let i = 18; i < 27; i++) {
+    sol_arr[i].style.borderBottom = " 3px solid black";
+    sol_arr[i].style.marginBottom = "1rem";
+  }
+  for (let i = 18; i < 27; i++) {
+    sol_arr[i].style.borderBottom = " 3px solid black";
+    sol_arr[i].style.marginBottom = "1rem";
+  }
+
+  for (let i = 45; i < 54; i++) {
+    sol_arr[i].style.borderBottom = " 3px solid black";
+    sol_arr[i].style.marginBottom = "1rem";
+  }
+
+  for(let i=3;i<76;i+=9){
+    sol_arr[i].style.marginLeft= "0.5rem"
+    
+  }
+
+  for(let i=6;i<81;i+=9){
+    sol_arr[i].style.marginLeft= "0.5rem"
+    
+
+
+  }
 }
 
 getSudo();

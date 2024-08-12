@@ -9,6 +9,10 @@
   --FONTCOLOR: #0d5ea5;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
   background-color: var(--BGCOLOR);
@@ -141,12 +145,96 @@ input:focus {
   cursor: pointer;
   background-color: #0d5ea5ad;
 }
+
+#score_sec{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: #0f599b;
+  
+  margin-bottom: 4rem;
+  border-radius: 2rem;
+  /* box-shadow: 5px 5px 0 black; */
+  color: white;
+  width: 80%;
+
+  /* background-image: url("assets/gameoverbg.png");
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+#score_sec :nth-child(1){
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding-top: 2rem;
+  text-decoration: underline;
+  letter-spacing: 0.3rem;
+}
+#score_sec img{
+  width: 100%;
+  height: auto;
+  
+  
+}
+#score{
+  font-size: 2rem;
+  font-weight: 600;
+}
+#ttaken{
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  font-weight: 600;
+
+}
+#sol_btn{
+  font-size: 1.2rem;
+  margin: 1rem;
+  border: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: rgb(0, 167, 0);
+  color: white;
+  margin-bottom: 2rem;
+}
+
+#sol_btn:hover{
+  opacity: 0.8;
+}
+
+#sol_head{
+  font-size: 2rem;
+  font-weight: 500;
+  width: 80%;
+  text-align: center;
+  background-color: #0d5ea5;
+  border-radius: 2rem 2rem 0 0;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
 #sol_cont {
   display: grid;
   grid-template-rows: repeat(9, auto);
   grid-template-columns: repeat(9, auto);
   gap: 0;
   min-width: 340px;
+  margin-bottom: 1rem;
+}
+
+#diff2{
+  font-size: 1.2rem;
+  
+  width: 80%;
+  text-align: center;
+  background-color: #0d5ea5;
+  border-radius: 0 0 2rem 2rem;
+  color: white;
+  margin-bottom:3rem;
+  padding: 0.5rem;
+
 }
 
 .h1 {
