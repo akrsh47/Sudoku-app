@@ -87,3 +87,9 @@ sub_btn_doc.addEventListener("click",function(){
     ttaken_doc.innerHTML=`Time Taken: ${beforeZeroHour} : ${beforeZeroMin} : ${beforeZeroSec}`;
     window.clearInterval(time_interval)
 })
+
+bcktop_doc.addEventListener("click",function(){
+  time_doc.scrollIntoView({
+      behavior:"smooth"
+    });
+})

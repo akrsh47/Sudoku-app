@@ -13,6 +13,8 @@ const f_new_btn_doc = document.getElementById("f_new_btn");
 const main_doc = document.getElementById("main");
 const home_scr_doc = document.getElementById("home_scr");
 
+const bcktop_doc = document.getElementById("bcktop");
+
 //const err_doc = document.getElementById("err")
 
 main_doc.style.display = "none";
@@ -99,6 +101,8 @@ for (let i = 0; i < 81; i++) {
 
   cont_doc.append(inp_arr[i]);
 }
+
+
 
 document.getElementById("diff2").style.display="none";
 
@@ -326,6 +330,8 @@ function showSolution() {
   if (sol_state == "hide") {
     sol_state = "show";
     sol_btn_doc.innerHTML = `hide solution`;
+    sol_btn_doc.style.color="rgb(0, 167, 0)";
+    sol_btn_doc.style.backgroundColor="white"
     sol_cont_doc.style.display = "grid";
       document.getElementById("sol_head").style.display=`block`;
       document.getElementById("diff2").style.display=`block`;
@@ -333,6 +339,8 @@ function showSolution() {
   } else if (sol_state == "show") {
     sol_state = "hide";
     sol_btn_doc.innerHTML = `view solution`;
+    sol_btn_doc.style.color="white";
+    sol_btn_doc.style.backgroundColor="rgb(0, 167, 0)"
     sol_cont_doc.style.display = "none";
       document.getElementById("sol_head").style.display=`none`;
       document.getElementById("diff2").style.display=`none`;
