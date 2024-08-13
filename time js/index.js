@@ -75,11 +75,16 @@ localStorage.setItem("time",JSON.stringify(save_time));
 })
 
 load_btn_doc.addEventListener("click",function(){
+  if(localStorage.length!=0)
+{
 seconds=JSON.parse(localStorage.getItem("time"))[0]
 minutes=JSON.parse(localStorage.getItem("time"))[1]
 hours=JSON.parse(localStorage.getItem("time"))[2]
 
+
 time_interval= window.setInterval(startClock,1000);
+
+}
 
 })
 

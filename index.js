@@ -16,8 +16,30 @@ const home_scr_doc = document.getElementById("home_scr");
 const bcktop_doc = document.getElementById("bcktop");
 
 //const err_doc = document.getElementById("err")
+const err_pop_btn_doc = document.getElementById("errpop_btn")
+
+err_pop_btn_doc.addEventListener("click",function(){
+  document.querySelector(".load_popup").classList.remove("load_popup_show");
+  home_scr_doc.style.opacity="1"
+
+
+})
+
+load_btn_doc.addEventListener("click",function(){
+  if(localStorage.length==0){
+  document.querySelector(".load_popup").classList.add("load_popup_show");
+  home_scr_doc.style.opacity="0.1"
+
+  document.querySelector(".load_popup").scrollIntoView({
+      behavior:"smooth"
+    });
+
+  }
+})
 
 main_doc.style.display = "none";
+
+//document.querySelector(".load_popup").classList.add("load_popup_show");
 
 f_new_btn_doc.addEventListener("click", function () {
   home_scr_doc.style.display = "none";
@@ -28,7 +50,9 @@ f_new_btn_doc.addEventListener("click", function () {
 });
 
 load_btn_doc.addEventListener("click", function () {
+  if(localStorage.length!=0){
   document.body.style.backgroundImage = `none`;
+  }
 });
 
 // set background image for home screen
@@ -159,11 +183,14 @@ async function getSudo() {
   });
 
   load_btn_doc.addEventListener("click", function () {
+  if(localStorage.length!=0)
+{
     main_doc.style.display = "flex";
     home_scr_doc.style.display = "none";
     loadInpVal();
     loadCpyVal();
     loadSolVal();
+  }
   });
 
   cpyInpVal();
