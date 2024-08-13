@@ -7,6 +7,7 @@
 :root {
   --BGCOLOR: #daf5ff;
   --FONTCOLOR: #0d5ea5;
+ 
 }
 
 html {
@@ -37,6 +38,8 @@ main {
   height: auto;
   mix-blend-mode: multiply;
 }
+
+
 .flcenter{
   display: flex;
   justify-content: center;
@@ -57,7 +60,7 @@ main {
   transition: transform 0.5s, top 0.5s;
 }
 .load_popup_show {
-  display: block;
+  
   top: 30%;
   transform: scale(1);
   visibility: visible;
@@ -103,6 +106,66 @@ main {
 .l2 button:hover {
   opacity: 0.8;
 }
+
+.save_popup{
+  background-color: white;
+  border-radius: 2rem;
+  padding: 2rem;
+  margin: 2rem;
+  position: absolute;
+  top: 0;
+  transform: scale(0.01);
+  visibility: hidden;
+  width: 80%;
+  max-width: 380px;
+
+  transition: transform 0.5s, top 0.5s;
+  background-color:white;
+  border-radius: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.save_popup img{
+  mix-blend-mode: multiply;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.s1{
+  font-size: 2rem;
+  color: green;
+  font-weight: 500;
+}
+
+.save_popup button{
+  width: 50%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: rgb(125, 238, 72);
+  border-radius: 1rem;
+  color: black;
+  border: 0;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.save_popup button:hover{
+  opacity: 0.8;
+}
+
+.save_popup_show {
+  
+  top: 30%;
+  transform: scale(1);
+  visibility: visible;
+}
+
+
 
 #time {
   text-align: center;

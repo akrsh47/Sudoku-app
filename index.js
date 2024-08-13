@@ -17,12 +17,28 @@ const bcktop_doc = document.getElementById("bcktop");
 
 //const err_doc = document.getElementById("err")
 const err_pop_btn_doc = document.getElementById("errpop_btn")
+const save_pop_btn_doc = document.getElementById("savepop_btn")
 
 err_pop_btn_doc.addEventListener("click",function(){
   document.querySelector(".load_popup").classList.remove("load_popup_show");
   home_scr_doc.style.opacity="1"
 
 
+})
+
+save_pop_btn_doc.addEventListener("click",function(){
+  document.querySelector(".save_popup").classList.remove("save_popup_show");
+  main_doc.style.opacity="1";
+  document.body.style.backgroundColor="#daf5ff";
+})
+save_btn_doc.addEventListener("click",function(){
+  document.querySelector(".save_popup").classList.add("save_popup_show")
+  main_doc.style.opacity="0.1"
+  document.body.style.backgroundColor="#bbbbbb"
+
+  document.querySelector(".save_popup").scrollIntoView({
+      behavior:"smooth"
+    });
 })
 
 load_btn_doc.addEventListener("click",function(){
