@@ -105,6 +105,7 @@ for (let i = 0; i < 81; i++) {
   sol_arr[i].readOnly = true;
   sol_arr[i].type = "text";
 
+
   sol_cont_doc.append(sol_arr[i]);
 }
 
@@ -117,7 +118,8 @@ if (sol_state == "hide") {
 for (let i = 0; i < 81; i++) {
   inp_arr[i] = document.createElement("input");
   inp_arr[i].type = "text";
-
+  inp_arr[i].inputMode = "numeric";
+  inp_arr[i].pattern="[0-9]*";
   inp_arr[i].addEventListener("input", function () {
     if (
       inp_arr[i].value == "0" ||
