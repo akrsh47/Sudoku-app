@@ -8,6 +8,7 @@ const save_btn_doc = document.getElementById("save_btn");
 const load_btn_doc = document.getElementById("load_btn");
 const score_sec_doc = document.getElementById("score_sec");
 const score_doc = document.getElementById("score");
+const abt_btn_doc = document.getElementById("abt_btn");
 
 const f_new_btn_doc = document.getElementById("f_new_btn");
 const main_doc = document.getElementById("main");
@@ -71,9 +72,15 @@ load_btn_doc.addEventListener("click", function () {
   }
 });
 
+abt_btn_doc.addEventListener("click",function(){
+  window.open("about/index.html");
+})
+
 // set background image for home screen
 if (main_doc.style.display == "none") {
   document.body.style.backgroundImage = `url(assets/bg.jpg)`;
+  
+  
 }
 
 let inp_arr = [];
